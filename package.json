@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongod": "^2.0.0",
+    "mongoose": "^8.13.1",
+    "node.js": "^0.0.1-security"
+  },
+  "scripts": {
+    "web_server": "node web_server.js",
+    "dev": "web_server"
+  }
+}
