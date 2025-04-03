@@ -2,6 +2,9 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 const PORT = 3000;
@@ -15,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files from the "public" folder (includes index.html, styles.css, etc.)
 app.use('/',express.static(path.join(__dirname, './public')));
 app.use('/',require("./routes/root"))
+app.use('/',require("./model/user"))
 
 // Connect to MongoDB (ensure MongoDB is running locally or update the connection string)
 mongoose.connect('mongodb://localhost/userDB', {
@@ -26,12 +30,13 @@ mongoose.connect('mongodb://localhost/userDB', {
 
 // Define a Mongoose schema and model for User
 const userSchema = new mongoose.Schema({
-  name: String,
-  email: String,
-  age: Number
+  Firstname: {type:String,required:true},
+  Lastname: {type:String,required:true},
+  email: {type:String,required:true},
+  password: String
 });
 
-const User = mongoose.model('User', userSchema);
+//const User = mongoose.model('User', userSchema);
 
 // POST route to handle JSON data for user registration
 
